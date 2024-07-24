@@ -1,6 +1,7 @@
 #INTEGRANTES: 
-Christopher Bazurto
-Alisson Caiza 
+
+- Christopher Bazurto
+- Alisson Caiza 
 
 
 # Predictor de Ingresos
