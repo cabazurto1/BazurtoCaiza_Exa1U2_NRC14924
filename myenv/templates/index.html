@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictor de Ingresos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 2px solid #2e7d32;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #1b5e20;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            display: block;
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 8px 10px;
+            border: 1px solid #2e7d32;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #388e3c;
+        }
+        .prediction {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+    <h1>Predictor de Ingresos</h1>
+    <form method="POST">
+        <label for="age">Edad:</label>
+        <input type="number" id="age" name="age" required min="0" max="120">
+
+        <label for="workclass">Clase de trabajo:</label>
+        <select id="workclass" name="workclass" required>
+            <option value="Private">Privado</option>
+            <option value="Self-emp-not-inc">Autónomo (no incorporado)</option>
+            <option value="Self-emp-inc">Autónomo (incorporado)</option>
+            <option value="Federal-gov">Gobierno Federal</option>
+            <option value="Local-gov">Gobierno Local</option>
+            <option value="State-gov">Gobierno Estatal</option>
+            <option value="Without-pay">Sin pago</option>
+            <option value="Never-worked">Nunca trabajó</option>
+        </select>
+
+        <label for="fnlwgt">Salario:</label>
+        <input type="number" id="fnlwgt" name="fnlwgt" required min="0">
+
+        <label for="education">Educación:</label>
+        <select id="education" name="education" required>
+            <option value="Bachelors">Licenciatura</option>
+            <option value="Some-college">Algo de universidad</option>
+            <option value="11th">11vo grado</option>
+            <option value="HS-grad">Graduado de secundaria</option>
+            <option value="Prof-school">Escuela profesional</option>
+            <option value="Assoc-acdm">Asociado académico</option>
+            <option value="Assoc-voc">Asociado vocacional</option>
+            <option value="9th">9no grado</option>
+            <option value="7th-8th">7mo-8vo grado</option>
+            <option value="12th">12vo grado</option>
+            <option value="Masters">Maestría</option>
+            <option value="1st-4th">1ro-4to grado</option>
+            <option value="10th">10mo grado</option>
+            <option value="Doctorate">Doctorado</option>
+            <option value="5th-6th">5to-6to grado</option>
+            <option value="Preschool">Preescolar</option>
+        </select>
+
+        <label for="education_num">Años de educación:</label>
+        <input type="number" id="education_num" name="education_num" required min="0" max="20">
+
+        <label for="marital_status">Estado civil:</label>
+        <select id="marital_status" name="marital_status" required>
+            <option value="Married-civ-spouse">Casado (cónyuge civil)</option>
+            <option value="Divorced">Divorciado</option>
+            <option value="Never-married">Nunca casado</option>
+            <option value="Separated">Separado</option>
+            <option value="Widowed">Viudo</option>
+            <option value="Married-spouse-absent">Casado (cónyuge ausente)</option>
+            <option value="Married-AF-spouse">Casado (cónyuge en Fuerzas Armadas)</option>
+        </select>
+
+        <label for="occupation">Ocupación:</label>
+        <select id="occupation" name="occupation" required>
+            <option value="Tech-support">Soporte técnico</option>
+            <option value="Craft-repair">Reparación artesanal</option>
+            <option value="Other-service">Otro servicio</option>
+            <option value="Sales">Ventas</option>
+            <option value="Exec-managerial">Ejecutivo/Gerencial</option>
+            <option value="Prof-specialty">Especialidad profesional</option>
+            <option value="Handlers-cleaners">Manipuladores/Limpiadores</option>
+            <option value="Machine-op-inspct">Operadores de máquinas/Inspectores</option>
+            <option value="Adm-clerical">Administrativo/Clerical</option>
+            <option value="Farming-fishing">Agricultura/Pesca</option>
+            <option value="Transport-moving">Transporte/Mudanza</option>
+            <option value="Priv-house-serv">Servicio doméstico privado</option>
+            <option value="Protective-serv">Servicio de protección</option>
+            <option value="Armed-Forces">Fuerzas Armadas</option>
+        </select>
+
+        <label for="relationship">Relación:</label>
+        <select id="relationship" name="relationship" required>
+            <option value="Wife">Esposa</option>
+            <option value="Own-child">Hijo propio</option>
+            <option value="Husband">Esposo</option>
+            <option value="Not-in-family">No en familia</option>
+            <option value="Other-relative">Otro pariente</option>
+            <option value="Unmarried">Soltero</option>
+        </select>
+
+        <label for="race">Raza:</label>
+        <select id="race" name="race" required>
+            <option value="White">Blanco</option>
+            <option value="Asian-Pac-Islander">Asiático/Isleño del Pacífico</option>
+            <option value="Amer-Indian-Eskimo">Indio Americano/Esquimal</option>
+            <option value="Other">Otro</option>
+            <option value="Black">Negro</option>
+        </select>
+
+        <label for="sex">Sexo:</label>
+        <select id="sex" name="sex" required>
+            <option value="Female">Femenino</option>
+            <option value="Male">Masculino</option>
+        </select>
+
+        <label for="capital_gain">Ganancia de capital:</label>
+        <input type="number" id="capital_gain" name="capital_gain" required min="0">
+
+        <label for="capital_loss">Pérdida de capital:</label>
+        <input type="number" id="capital_loss" name="capital_loss" required min="0">
+
+        <label for="hours_per_week">Horas por semana:</label>
+        <input type="number" id="hours_per_week" name="hours_per_week" required min="0" max="168">
+
+        <label for="native_country">País de origen:</label>
+        <select id="native_country" name="native_country" required>
+            <option value="United-States">Estados Unidos</option>
+            <option value="Canada">Canadá</option>
+            <option value="Mexico">México</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="India">India</option>
+            <option value="Japan">Japón</option>
+            <option value="China">China</option>
+            <option value="Germany">Alemania</option>
+            <option value="Philippines">Filipinas</option>
+            <option value="England">Inglaterra</option>
+            <option value="Italy">Italia</option>
+            <option value="Poland">Polonia</option>
+            <option value="Columbia">Colombia</option>
+            <option value="Cambodia">Camboya</option>
+            <option value="Thailand">Tailandia</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Haiti">Haití</option>
+            <option value="Portugal">Portugal</option>
+            <option value="France">Francia</option>
+            <option value="Dominican-Republic">República Dominicana</option>
+            <option value="El-Salvador">El Salvador</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Peru">Perú</option>
+            <option value="Hong">Hong Kong</option>
+            <option value="Greece">Grecia</option>
+            <option value="Ireland">Irlanda</option>
+            <option value="South-Korea">Corea del Sur</option>
+            <option value="Scotland">Escocia</option>
+            <option value="Taiwan">Taiwán</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Trinadad&Tobago">Trinidad y Tobago</option>
+            <option value="Hungary">Hungría</option>
+            <option value="Holand-Netherlands">Países Bajos</option>
+        </select>
+
+        <input type="submit" value="Predecir">
+    </form>
+
+    {% if prediction %}
+    <div class="prediction">
+        Predicción: {{ prediction }}
+    </div>
+    {% endif %}
+</body>
+</html>
