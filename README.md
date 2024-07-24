@@ -1,3 +1,8 @@
+#INTEGRANTES: 
+Christopher Bazurto
+Alisson Caiza 
+
+
 # Predictor de Ingresos
 
 Este proyecto es una aplicación web que utiliza un modelo de aprendizaje automático para predecir si el ingreso de una persona es superior o inferior a 50K al año basándose en varios factores socioeconómicos.
